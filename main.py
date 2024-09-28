@@ -2,8 +2,18 @@ from fastapi import FastAPI, HTTPException, Request
 from fastapi.responses import RedirectResponse
 import base64
 import urllib.parse
+from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI()
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
 
 
 @app.post("/encode-url/")
