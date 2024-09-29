@@ -34,7 +34,7 @@ async def encode_url(request: Request):
     return {"encoded_url": response_url}
 
 @app.get("/redirect/{encoded_url}")
-@limiter.limit("60/minute")
+@limiter.limit("200/minute")
 async def redirect_to_url(request: Request, encoded_url: str):
     try:
         decoded_url = base64.urlsafe_b64decode(encoded_url.encode("utf-8")).decode("utf-8")
